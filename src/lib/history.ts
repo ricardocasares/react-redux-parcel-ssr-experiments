@@ -11,7 +11,7 @@ export const history = isServer
   : createBrowserHistory();
 
 export function connectHistory(store: Store) {
-  history.listen(({ pathname }) => {
-    store.dispatch(updateLocation({ pathname }));
+  history.listen(state => {
+    store.dispatch(updateLocation(state));
   });
 }
