@@ -5,6 +5,9 @@
   "main": "dist/server.js",
   "author": "Ricardo Casares <ricardocasares@gmail.com> (http://analogic.al/)",
   "license": "MIT",
+  "now": {
+    "alias": "ssr-experiments.analogic.al"
+  },
   "scripts": {
     "dev": "run-p watch start:dev",
     "watch": "run-p watch:client watch:server",
