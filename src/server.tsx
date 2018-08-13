@@ -1,7 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { renderToString } from "react-dom/server";
-import express, { Request, Response } from "express";
+import express, { static as assets, Request, Response } from "express";
 
 import App from "./";
 import configureStore from "./store";
@@ -26,6 +26,6 @@ function renderRoute(req: Request, res: Response) {
 }
 
 express()
-  .use(express.static("./dist"))
+  .use(assets("./dist"))
   .get("*", renderRoute)
   .listen(3000, () => console.log("> Listening on port 3000"));
