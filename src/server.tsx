@@ -20,7 +20,7 @@ function renderRoute(req: Request, res: Response) {
           </Provider>
         )}</div>
         <script>__REDUX_STATE = ${JSON.stringify(store.getState())}</script>
-        <script src="/client.js"></script>
+        <script async src="/client.js"></script>
       </body>
     </html>`);
 }
