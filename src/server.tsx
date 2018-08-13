@@ -9,24 +9,20 @@ import configureStore from "./store";
 function renderRoute(req: Request, res: Response) {
   const store = configureStore({ router: { pathname: req.url } });
 
-  const str = renderToString(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
-
-  const html = `<html>
+  res.send(`<html>
       <head>
         <title>Hello</title>
       </head>
       <body>
-        <div id="root">${str}</div>
+        <div id="root">${renderToString(
+          <Provider store={store}>
+            <App />
+          </Provider>
+        )}</div>
         <script>__REDUX_STATE = ${JSON.stringify(store.getState())}</script>
         <script src="/client.js"></script>
       </body>
-    </html>`;
-
-  res.send(html);
+    </html>`);
 }
 
 express()
