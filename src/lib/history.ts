@@ -1,6 +1,6 @@
 import { Store } from "redux";
-import createBrowserHistory from "history/createBrowserHistory";
 import createMemoryHistory from "history/createMemoryHistory";
+import createBrowserHistory from "history/createBrowserHistory";
 
 const UPDATE_LOCATION = "@@location/update";
 const updateLocation = (payload: any) => ({ type: UPDATE_LOCATION, payload });
