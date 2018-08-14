@@ -2,9 +2,9 @@ import React, { SFC } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 
-import Link from "../components/Link";
-import Counter from "../components/Counter";
-import { AppState } from "../models";
+import Link from "@app/components/Link";
+import Counter from "@app/components/Counter";
+import { AppState } from "@app/models";
 
 const increment = () => ({ type: "INC" });
 const decrement = () => ({ type: "DEC" });

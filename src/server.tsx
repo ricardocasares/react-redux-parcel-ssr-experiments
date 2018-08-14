@@ -3,8 +3,8 @@ import { Provider } from "react-redux";
 import { renderToString } from "react-dom/server";
 import express, { static as assets, Request, Response } from "express";
 
-import App from "./";
-import configureStore from "./store";
+import App from "@app/index";
+import configureStore from "@app/store";
 
 function renderRoute(req: Request, res: Response) {
   const store = configureStore({ router: { pathname: req.url } });
@@ -12,6 +12,7 @@ function renderRoute(req: Request, res: Response) {
   res.send(`<html>
       <head>
         <title>Hello</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
         <div id="root">${renderToString(

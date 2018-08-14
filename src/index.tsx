@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 // @todo: get typings for libreact
 import { Router, Route } from "libreact/lib/route";
 
-import Index from "./containers/index";
-import About from "./containers/about";
-import { AppState } from "./models";
+import Index from "@app/containers/index";
+import About from "@app/containers/about";
+import { AppState } from "@app/models";
 
 type RoutedApp = Pick<AppState, "router">;
 
