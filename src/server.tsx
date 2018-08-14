@@ -28,5 +28,6 @@ function renderRoute(req: Request, res: Response) {
 
 express()
   .use(assets("./dist"))
+  .use(assets("./static"))
   .get("*", renderRoute)
   .listen(3000, () => console.log("> Listening on port 3000"));
