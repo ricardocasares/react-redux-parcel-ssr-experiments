@@ -1,5 +1,5 @@
 import React, { SFC } from "react";
-import { history } from "../lib/history";
+import { history } from "@app/lib/history";
 
 type Link = {
   to: string;
