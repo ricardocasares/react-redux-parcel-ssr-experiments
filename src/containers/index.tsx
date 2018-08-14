@@ -1,5 +1,6 @@
 import React, { SFC } from "react";
 import { connect } from "react-redux";
+import Helmet from "react-helmet-async";
 import { bindActionCreators, Dispatch } from "redux";
 
 import Link from "@app/components/Link";
@@ -16,6 +17,9 @@ export type Index = {
 
 export const Index: SFC<Index> = ({ router, counter, inc, dec }) => (
   <div>
+    <Helmet>
+      <title>Home</title>
+    </Helmet>
     <h1>{router.pathname}</h1>
     <Link to="/about">About</Link>
     <Counter count={counter.count} inc={inc} dec={dec} />

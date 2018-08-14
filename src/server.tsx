@@ -1,25 +1,30 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { renderToString } from "react-dom/server";
+import { HelmetProvider } from "react-helmet-async";
 import express, { static as assets, Request, Response } from "express";
 
 import App from "@app/index";
 import configureStore from "@app/store";
 
 function renderRoute(req: Request, res: Response) {
+  const ctx: any = {};
   const store = configureStore({ router: { pathname: req.url } });
+  const application = renderToString(
+    <Provider store={store}>
+      <HelmetProvider context={ctx}>
+        <App />
+      </HelmetProvider>
+    </Provider>
+  );
 
   res.send(`<html>
       <head>
-        <title>Hello</title>
+        ${ctx.helmet.title.toString()}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body>
-        <div id="root">${renderToString(
-          <Provider store={store}>
-            <App />
-          </Provider>
-        )}</div>
+        <div id="root">${application}</div>
         <script>__REDUX_STATE = ${JSON.stringify(store.getState())}</script>
         <script async src="/client.js"></script>
       </body>
