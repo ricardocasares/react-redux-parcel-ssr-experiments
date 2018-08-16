@@ -18,7 +18,7 @@ function renderRoute(req: Request, res: Response) {
     </Provider>
   );
 
-  res.send(`<html>
+  res.send(`<html lang="en">
       <head>
         ${ctx.helmet.title.toString()}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
