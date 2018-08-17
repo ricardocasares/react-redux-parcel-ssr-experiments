@@ -11,10 +11,10 @@ type RoutedApp = Pick<AppState, "router">;
 
 const RoutedApp: SFC<RoutedApp> = ({ router }) => (
   <Router route={router.pathname}>
-    <Route exact={true} match={"/"}>
+    <Route exact match={"/"}>
       <Index />
     </Route>
-    <Route exact={true} match={"/about"}>
+    <Route exact match={"/about"}>
       <About />
     </Route>
   </Router>
