@@ -1,7 +1,7 @@
 import React, { SFC } from "react";
 import { connect } from "react-redux";
 // @todo: get typings for libreact
-import { Router, Route } from "libreact/lib/route";
+import { Switch, Router, Route } from "libreact/lib/route";
 
 import Index from "@app/containers/index";
 import About from "@app/containers/about";
@@ -11,12 +11,14 @@ type RoutedApp = Pick<AppState, "router">;
 
 const RoutedApp: SFC<RoutedApp> = ({ router }) => (
   <Router route={router.pathname}>
-    <Route exact match={"/"}>
-      <Index />
-    </Route>
-    <Route exact match={"/about"}>
-      <About />
-    </Route>
+    <Switch>
+      <Route exact match={"/"}>
+        <Index />
+      </Route>
+      <Route exact match={"/about"}>
+        <About />
+      </Route>
+    </Switch>
   </Router>
 );
 
