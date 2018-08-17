@@ -17,7 +17,7 @@
     "watch:server": "parcel watch src/server.tsx --target=node",
     "build:server": "parcel build src/server.tsx --target=node --detailed-report",
     "start": "node dist/server.js",
-    "start:dev": "nodemon -q dist/server.js"
+    "start:dev": "nodemon -q dist/server.js --watch dist/*"
   },
   "dependencies": {
     "express": "^4.16.3",
