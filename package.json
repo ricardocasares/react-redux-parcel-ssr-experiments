@@ -1,15 +1,20 @@
 {
-  "name": "react-redux-parcel-ssr-experiments",
+  "name": "ssr-experiments",
   "description": "Playing with parcel + react + redux + ssr",
   "version": "1.0.0",
   "main": "dist/server.js",
   "author": "Ricardo Casares <ricardocasares@gmail.com> (http://analogic.al/)",
   "repository": {
     "type": "git",
-    "url": "github:ricardocasares/react-redux-parcel-ssr-experiments"
+    "url": "github:ricardocasares/ssr-experiments"
   },
   "license": "MIT",
   "now": {
+    "name": "ssr-experiments",
+    "type": "docker",
+    "features": {
+      "cloud": "v2"
+    },
     "alias": "ssr-experiments.analogic.al"
   },
   "scripts": {
