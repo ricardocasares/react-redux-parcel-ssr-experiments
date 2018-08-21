@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:latest AS base
+FROM mhart/alpine-node:latest AS build
 WORKDIR /app
 COPY package.json package-lock.json /app/
 RUN npm ci
@@ -9,6 +9,6 @@ RUN npm ci --prod
 FROM mhart/alpine-node:base
 WORKDIR /app
 ENV NODE_ENV="production"
-COPY --from=base /app/dist .
-COPY --from=base /app/node_modules /app/node_modules
+COPY --from=build /app/dist .
+COPY --from=build /app/node_modules /app/node_modules
 CMD node server.js
