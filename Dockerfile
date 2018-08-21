@@ -9,6 +9,7 @@ RUN npm ci --prod
 FROM mhart/alpine-node:base
 WORKDIR /app
 ENV NODE_ENV="production"
-COPY --from=build /app/dist .
+COPY --from=build /app/dist /app/dist
+COPY --from=build /app/static /app/static
 COPY --from=build /app/node_modules /app/node_modules
-CMD node server.js
+CMD node dist/server.js
