@@ -1,0 +1,7 @@
+*
+!src
+!static
+!.babelrc
+!package.json
+!tsconfig.json
+!package-lock.json
