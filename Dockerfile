@@ -6,7 +6,6 @@ ADD . /app
 RUN npm run build
 RUN npm ci --prod
 
-
 FROM mhart/alpine-node:base
 WORKDIR /app
 ENV NODE_ENV="production"
