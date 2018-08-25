@@ -1,5 +1,5 @@
 import { parse } from "urlite/extra";
-import { Store, Middleware } from "redux";
+import { Store, Middleware, AnyAction } from "redux";
 
 export const HISTORY_POP = "@app/history/pop";
 export const HISTORY_PUSH = "@app/history/push";
@@ -37,7 +37,7 @@ export function reducer(state = {}, action: HistoryActions) {
   }
 }
 
-export const middleware: Middleware = store => {
+export const middleware: Middleware = (store: Store) => {
   if (browser()) {
     window.onpopstate = function() {
       const { path } = parse(document.location.href);
@@ -46,7 +46,7 @@ export const middleware: Middleware = store => {
   }
 
   return function(next) {
-    return function(action) {
+    return function(action: AnyAction) {
       if (browser() && action.type === HISTORY_PUSH) {
         history.pushState(null, "undefined", action.payload);
       }
