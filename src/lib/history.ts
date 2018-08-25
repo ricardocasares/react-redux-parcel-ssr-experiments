@@ -4,8 +4,8 @@ import { Store, Middleware } from "redux";
 export const HISTORY_POP = "@app/history/pop";
 export const HISTORY_PUSH = "@app/history/push";
 
-export function ssr(): boolean {
-  return typeof window === "undefined";
+export function browser(): boolean {
+  return typeof window !== "undefined";
 }
 
 export function pop(payload: string) {
@@ -37,10 +37,17 @@ export function reducer(state = {}, action: HistoryActions) {
   }
 }
 
-export const middleware: Middleware = () => {
+export const middleware: Middleware = store => {
+  if (browser()) {
+    window.onpopstate = function() {
+      const { path } = parse(document.location.href);
+      store.dispatch(pop(path));
+    };
+  }
+
   return function(next) {
     return function(action) {
-      if (action.type === HISTORY_PUSH && !ssr()) {
+      if (browser() && action.type === HISTORY_PUSH) {
         history.pushState(null, "undefined", action.payload);
       }
 
@@ -48,10 +55,3 @@ export const middleware: Middleware = () => {
     };
   };
 };
-
-export function dispatchOnPopState(store: Store) {
-  window.onpopstate = function() {
-    const { path } = parse(document.location.href);
-    store.dispatch(pop(path));
-  };
-}
