@@ -1,7 +1,11 @@
-import { AppState } from "./models";
+declare module "urlite/extra" {
+  const parse: any;
+  export { parse };
+}
 
-declare global {
-  interface Window {
-    __REDUX_STATE: AppState;
-  }
+declare module "libreact/lib/route" {
+  const Route: any;
+  const Router: any;
+  const Switch: any;
+  export { Route, Router, Switch };
 }

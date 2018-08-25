@@ -1,10 +1,11 @@
 export interface AppState {
   router: {
-    key?: string;
-    hash?: string;
-    state?: any;
-    search?: string;
+    path: string;
+    href: string;
     pathname: string;
+    search?: {
+      [x: string]: string;
+    };
   };
   counter: { count: number };
 }

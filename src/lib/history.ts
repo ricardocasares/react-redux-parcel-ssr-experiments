@@ -1,17 +1,57 @@
-import { Store } from "redux";
-import createMemoryHistory from "history/createMemoryHistory";
-import createBrowserHistory from "history/createBrowserHistory";
+import { parse } from "urlite/extra";
+import { Store, Middleware } from "redux";
 
-const UPDATE_LOCATION = "@@location/update";
-const updateLocation = (payload: any) => ({ type: UPDATE_LOCATION, payload });
-const isServer = typeof window === "undefined";
+export const HISTORY_POP = "@app/history/pop";
+export const HISTORY_PUSH = "@app/history/push";
 
-export const history = isServer
-  ? createMemoryHistory()
-  : createBrowserHistory();
+export function ssr(): boolean {
+  return typeof window === "undefined";
+}
 
-export function connectHistory(store: Store) {
-  history.listen(state => {
-    store.dispatch(updateLocation(state));
-  });
+export function pop(payload: string) {
+  return {
+    type: HISTORY_POP as typeof HISTORY_POP,
+    payload
+  };
+}
+
+export function push(payload: string) {
+  return {
+    type: HISTORY_PUSH as typeof HISTORY_PUSH,
+    payload
+  };
+}
+
+export type PopAction = ReturnType<typeof pop>;
+export type PushAction = ReturnType<typeof push>;
+export type HistoryActions = PopAction | PushAction;
+
+export function reducer(state = {}, action: HistoryActions) {
+  switch (action.type) {
+    case HISTORY_POP:
+    case HISTORY_PUSH:
+      const { search, ...payload } = parse(action.payload);
+      return { query: search, ...payload };
+    default:
+      return state;
+  }
+}
+
+export const middleware: Middleware = () => {
+  return function(next) {
+    return function(action) {
+      if (action.type === HISTORY_PUSH && !ssr()) {
+        history.pushState(null, "undefined", action.payload);
+      }
+
+      return next(action);
+    };
+  };
+};
+
+export function dispatchOnPopState(store: Store) {
+  window.onpopstate = function() {
+    const { path } = parse(document.location.href);
+    store.dispatch(pop(path));
+  };
 }

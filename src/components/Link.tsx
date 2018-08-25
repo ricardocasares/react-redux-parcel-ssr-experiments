@@ -1,20 +1,28 @@
 import React, { SFC } from "react";
-import { history } from "@app/lib/history";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { push } from "@app/lib/history";
 
 type Link = {
   to: string;
+  push: Function;
   className?: string;
 };
 
-function onClick(e: React.MouseEvent<HTMLElement>, to: string) {
-  history.push(to);
-  e.preventDefault();
-}
-
-const Link: SFC<Link> = ({ to, children, className }) => (
-  <a href={to} onClick={e => onClick(e, to)} className={className}>
+const Link: SFC<Link> = ({ to, children, className, push }) => (
+  <a
+    href={to}
+    onClick={e => {
+      e.preventDefault();
+      push(to);
+    }}
+    className={className}
+  >
     {children}
   </a>
 );
 
-export default Link;
+export default connect(
+  null,
+  dispatch => bindActionCreators({ push }, dispatch)
+)(Link);

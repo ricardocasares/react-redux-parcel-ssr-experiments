@@ -13,7 +13,7 @@ export const Index: SFC<Index> = ({ router }) => (
     <Helmet>
       <title>Home</title>
     </Helmet>
-    <h1>{router.pathname}</h1>
+    <h1>{router.path}</h1>
     <Link to="/about">About</Link>
     <Counter />
   </div>

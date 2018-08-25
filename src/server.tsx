@@ -1,5 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
+import { push } from "@app/lib/history";
 import { renderToString } from "react-dom/server";
 import { HelmetProvider } from "react-helmet-async";
 import express, { static as assets, Request, Response } from "express";
@@ -9,7 +10,9 @@ import configureStore from "@app/store";
 
 function renderRoute(req: Request, res: Response) {
   const ctx: any = {};
-  const store = configureStore({ router: { pathname: req.url } });
+  const store = configureStore();
+  store.dispatch(push(req.url));
+
   const application = renderToString(
     <Provider store={store}>
       <HelmetProvider context={ctx}>

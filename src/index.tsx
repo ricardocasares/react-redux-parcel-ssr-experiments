@@ -10,13 +10,13 @@ import { AppState } from "@app/models";
 type RoutedApp = Pick<AppState, "router">;
 
 const RoutedApp: SFC<RoutedApp> = ({ router }) => (
-  <Router route={router.pathname}>
+  <Router route={router.path}>
     <Switch>
-      <Route exact match={"/"}>
-        <Index />
-      </Route>
-      <Route exact match={"/about"}>
+      <Route match={"/about"}>
         <About />
+      </Route>
+      <Route match={"/"}>
+        <Index />
       </Route>
     </Switch>
   </Router>
