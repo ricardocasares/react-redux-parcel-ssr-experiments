@@ -1,7 +1,7 @@
 import React, { SFC } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { push } from "@app/lib/history";
+import { push } from "@app/lib/history/actions";
 
 type Link = {
   to: string;
