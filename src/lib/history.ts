@@ -40,8 +40,7 @@ export function reducer(state = {}, action: HistoryActions) {
 export const middleware: Middleware = (store: Store) => {
   if (browser()) {
     window.onpopstate = function() {
-      const { path } = parse(document.location.href);
-      store.dispatch(pop(path));
+      store.dispatch(pop(document.location.href));
     };
   }
 
