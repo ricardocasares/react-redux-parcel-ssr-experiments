@@ -1,9 +1,10 @@
 import React from "react";
+import * as express from "express";
 import { Provider } from "react-redux";
 import { push } from "@app/lib/history";
 import { renderToString } from "react-dom/server";
 import { HelmetProvider } from "react-helmet-async";
-import express, { static as assets, Request, Response } from "express";
+import { static as assets, Request, Response } from "express";
 
 import App from "@app/index";
 import configureStore from "@app/store";
