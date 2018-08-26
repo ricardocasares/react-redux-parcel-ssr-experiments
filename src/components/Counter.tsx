@@ -1,26 +1,32 @@
 import React, { SFC } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators, Dispatch } from "redux";
+import { bindActionCreators } from "redux";
 import { AppState } from "@app/models";
+import * as actions from "@app/store/counter/actions";
 
 type Counter = {
   count: number;
-  inc: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  dec: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  increment: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  decrement: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
-const Counter: SFC<Counter> = ({ count, inc, dec }) => (
+const Count: SFC<Pick<Counter, "count">> = ({ count }) => <span>{count}</span>;
+
+const ConnectedCount = connect(({ counter }: AppState) => ({
+  count: counter.count
+}))(Count);
+
+const Counter: SFC<Counter> = ({ increment, decrement }) => (
   <div>
-    <h1>Clicks so far: {count}</h1>
-    <button onClick={inc}>inc</button>
-    <button onClick={dec}>dec</button>
+    <h1>
+      Clicks so far: <ConnectedCount />
+    </h1>
+    <button onClick={increment}>inc</button>
+    <button onClick={decrement}>dec</button>
   </div>
 );
 
-const increment = () => ({ type: "INC" });
-const decrement = () => ({ type: "DEC" });
-
 export default connect(
-  ({ counter }: AppState) => counter,
-  dispatch => bindActionCreators({ inc: increment, dec: decrement }, dispatch)
+  null,
+  dispatch => bindActionCreators(actions, dispatch)
 )(Counter);

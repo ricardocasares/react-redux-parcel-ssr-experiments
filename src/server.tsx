@@ -8,7 +8,7 @@ import express, { static as assets, Request, Response } from "express";
 import App from "@app/index";
 import configureStore from "@app/store";
 
-function renderRoute(req: Request, res: Response) {
+async function renderRoute(req: Request, res: Response) {
   const ctx: any = {};
   const store = configureStore();
   store.dispatch(push(req.url));

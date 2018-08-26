@@ -1,21 +1,16 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import { reducer as router, middleware as history } from "@app/lib/history";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 
-// @todo: no any
-function counter(state = { count: 0 }, { type }: any) {
-  switch (type) {
-    case "INC":
-      return { ...state, count: state.count + 1 };
-    case "DEC":
-      return { ...state, count: state.count - 1 };
+import counter from "./counter";
+import router, { middleware as history } from "@app/lib/history";
 
-    default:
-      return state;
-  }
-}
+const enhancers =
+  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+    : compose;
 
-const rootReducer = combineReducers({ counter, router });
+const reducer = combineReducers({ counter, router });
+const enhancer = enhancers(applyMiddleware(history));
 
 export default function configureStore(state = {}) {
-  return createStore(rootReducer, state, applyMiddleware(history));
+  return createStore(reducer, state, enhancer);
 }
