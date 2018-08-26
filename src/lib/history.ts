@@ -48,7 +48,7 @@ export const middleware: Middleware = (store: Store) => {
   return function(next) {
     return function(action: AnyAction) {
       if (browser() && action.type === HISTORY_PUSH) {
-        history.pushState(null, "undefined", action.payload);
+        history.pushState(undefined, undefined, action.payload);
       }
 
       return next(action);
