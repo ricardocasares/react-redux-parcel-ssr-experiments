@@ -1,41 +1,55 @@
 import { parse } from "urlite/extra";
-import { Store, Middleware, AnyAction } from "redux";
+import { Store, Middleware, Action, Reducer } from "redux";
 
-export const HISTORY_POP = "@app/history/pop";
-export const HISTORY_PUSH = "@app/history/push";
+export enum HistoryActionTypes {
+  POP = "@app/history/pop",
+  PUSH = "@app/history/push"
+}
+
+export interface HistoryAction extends Action<HistoryActionTypes> {
+  payload: string;
+}
+
+export interface HistoryState {
+  path: string;
+  href?: string;
+  post?: string;
+  pathname?: string;
+  hostname?: string;
+  protocol?: string;
+  search?: Record<string, string>;
+}
 
 export function browser(): boolean {
   return typeof window !== "undefined";
 }
 
-export function pop(payload: string) {
+export function pop(payload: string): HistoryAction {
   return {
-    type: HISTORY_POP as typeof HISTORY_POP,
+    type: HistoryActionTypes.POP,
     payload
   };
 }
 
-export function push(payload: string) {
+export function push(payload: string): HistoryAction {
   return {
-    type: HISTORY_PUSH as typeof HISTORY_PUSH,
+    type: HistoryActionTypes.PUSH,
     payload
   };
 }
 
-export type PopAction = ReturnType<typeof pop>;
-export type PushAction = ReturnType<typeof push>;
-export type HistoryActions = PopAction | PushAction;
-
-export function reducer(state = {}, action: HistoryActions) {
+export const reducer: Reducer<HistoryState, HistoryAction> = function(
+  state = { path: "/" },
+  action
+) {
   switch (action.type) {
-    case HISTORY_POP:
-    case HISTORY_PUSH:
-      const { search, ...payload } = parse(action.payload);
-      return { query: search, ...payload };
+    case HistoryActionTypes.POP:
+    case HistoryActionTypes.PUSH:
+      return { ...parse(action.payload) };
     default:
       return state;
   }
-}
+};
 
 export const middleware: Middleware = (store: Store) => {
   if (browser()) {
@@ -45,8 +59,8 @@ export const middleware: Middleware = (store: Store) => {
   }
 
   return function(next) {
-    return function(action: AnyAction) {
-      if (browser() && action.type === HISTORY_PUSH) {
+    return function(action: HistoryAction) {
+      if (browser() && action.type === HistoryActionTypes.PUSH) {
         history.pushState(undefined, undefined, action.payload);
       }
 
