@@ -1,11 +1,7 @@
+import { HistoryState } from "@app/lib/history/types";
+import { CounterState } from "@app/store/counter/types";
+
 export interface AppState {
-  router: {
-    path: string;
-    href: string;
-    pathname: string;
-    search?: {
-      [x: string]: string;
-    };
-  };
-  counter: { count: number };
+  router: HistoryState;
+  counter: CounterState;
 }
