@@ -30,11 +30,7 @@ export const resolver = function(options: Options) {
         } while (!match && routes[next]);
 
         if (match) {
-          try {
-            await resolve(store.dispatch, match);
-          } catch (error) {
-            console.error(error);
-          }
+          await resolve(store.dispatch, match);
         }
       }
 
