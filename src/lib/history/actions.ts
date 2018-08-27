@@ -1,15 +1,15 @@
-import { HistoryAction, HistoryActionTypes } from "./types";
+import { HistoryAction, HistoryActionType } from "./types";
 
 export function pop(payload: string): HistoryAction {
   return {
-    type: HistoryActionTypes.POP,
+    type: HistoryActionType.POP,
     payload
   };
 }
 
 export function push(payload: string): HistoryAction {
   return {
-    type: HistoryActionTypes.PUSH,
+    type: HistoryActionType.PUSH,
     payload
   };
 }

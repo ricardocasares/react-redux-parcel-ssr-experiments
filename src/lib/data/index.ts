@@ -2,13 +2,13 @@ import Pattern from "url-pattern";
 import { Dispatch, Middleware } from "redux";
 
 export interface Options {
-  action: string;
+  action: string[];
   routes: {
     [x: string]: (store: Dispatch, params: any) => any;
   };
 }
 
-export const resolver = function(options: Options) {
+export const factory = function(options: Options) {
   const routes = Object.keys(options.routes).map(route => ({
     path: new Pattern(route),
     resolve: options.routes[route]
@@ -16,12 +16,11 @@ export const resolver = function(options: Options) {
 
   const middleware: Middleware = function middleware(store) {
     return next => async action => {
-      if (action.type === options.action) {
+      if (options.action.includes(action.type)) {
         let path;
         let resolve;
         let next = 0;
         let match = false;
-
         do {
           path = routes[next].path;
           resolve = routes[next].resolve;
@@ -41,4 +40,4 @@ export const resolver = function(options: Options) {
   return middleware;
 };
 
-export default resolver;
+export default factory;

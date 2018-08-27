@@ -7,9 +7,9 @@ export const reducer: Reducer<CounterState, CounterAction> = function(
 ) {
   switch (action.type) {
     case CounterActionTypes.INCREMENT:
-      return { count: state.count + 1 };
+      return { count: state.count + action.payload };
     case CounterActionTypes.DECREMENT:
-      return { count: state.count - 1 };
+      return { count: state.count - action.payload };
     default:
       return state;
   }

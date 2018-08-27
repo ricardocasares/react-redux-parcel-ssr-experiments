@@ -1,11 +1,11 @@
 import { Action } from "redux";
 
-export enum HistoryActionTypes {
+export enum HistoryActionType {
   POP = "@app/history/pop",
   PUSH = "@app/history/push"
 }
 
-export interface HistoryAction extends Action<HistoryActionTypes> {
+export interface HistoryAction extends Action<HistoryActionType> {
   payload: string;
 }
 

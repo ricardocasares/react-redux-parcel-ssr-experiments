@@ -6,8 +6,8 @@ import * as actions from "@app/store/counter/actions";
 
 type Counter = {
   count: number;
-  increment: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  decrement: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  increment: typeof actions.increment;
+  decrement: typeof actions.decrement;
 };
 
 const Count: SFC<Pick<Counter, "count">> = ({ count }) => <span>{count}</span>;
@@ -17,8 +17,8 @@ const Counter: SFC<Counter> = ({ increment, decrement }) => (
     <h1>
       Clicks so far: <ConnectedCount />
     </h1>
-    <button onClick={increment}>inc</button>
-    <button onClick={decrement}>dec</button>
+    <button onClick={() => increment()}>inc</button>
+    <button onClick={() => decrement()}>dec</button>
   </div>
 );
 

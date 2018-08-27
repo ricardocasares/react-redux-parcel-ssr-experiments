@@ -1,24 +1,24 @@
 import { Action, AnyAction, Middleware } from "redux";
 
-export const enum DelayActionTypes {
+export enum DelayActionType {
   DELAY = "@fx/delay"
 }
 
-export interface DelayedAction<T> extends Action<DelayActionTypes> {
+export interface DelayedAction<T> extends Action<DelayActionType> {
   meta: {
     effect: {
-      delay: number;
+      ms: number;
       action: T;
     };
   };
 }
 
-export function delay<T>(action: T, delay: number): DelayedAction<T> {
+export function delay<T>(action: T, ms: number): DelayedAction<T> {
   return {
-    type: DelayActionTypes.DELAY,
+    type: DelayActionType.DELAY,
     meta: {
       effect: {
-        delay,
+        ms,
         action
       }
     }
@@ -31,12 +31,14 @@ export function sleep(ms: number) {
 
 export const middleware: Middleware = function middleware(store) {
   return next => async (action: DelayedAction<any>) => {
-    if (action.type === DelayActionTypes.DELAY) {
-      await sleep(action.meta.effect.delay);
+    const result = next(action);
+
+    if (action.type === DelayActionType.DELAY) {
+      await sleep(action.meta.effect.ms);
       store.dispatch(action.meta.effect.action());
     }
 
-    return next(action);
+    return result;
   };
 };
 
