@@ -1,5 +1,8 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 
+// state
+import { AppState } from "@app/models";
+
 // redux modules
 import counter from "./counter";
 
@@ -10,9 +13,6 @@ import debouncer from "@app/lib/debounce";
 import configureErrorHandler from "@app/lib/errors";
 import router, { middleware as history } from "@app/lib/history";
 import resolver from "./resolver";
-
-// state
-import { AppState } from "@app/models";
 
 // debouncer configuration
 const debounce = debouncer([250, 500, 1000]);
