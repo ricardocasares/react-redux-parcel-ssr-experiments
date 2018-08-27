@@ -1,9 +1,8 @@
-import { CounterAction, CounterActionTypes } from "./types";
-import { delay } from "@app/lib/delay";
-import { request } from "@app/lib/http";
+import { http } from "@app/lib/http";
 import { debounce } from "@app/lib/debounce";
+import { CounterAction, CounterActionTypes } from "./types";
 
-export const increment = (payload: number = 1): CounterAction => ({
+const inc = (payload: number = 1): CounterAction => ({
   type: CounterActionTypes.INCREMENT,
   payload
 });
@@ -13,13 +12,9 @@ const dec = (payload: number = 1): CounterAction => ({
   payload
 });
 
-// const fun = (n: number) => debounce<typeof dec>(() => dec(n), 1000);
-// export const decrement = (n: number, ms: number) => delay(() => fun(n), ms);
-const receive = (payload: any) => ({
-  type: "@app/fetch/posts/success",
-  payload
-});
-export const posts = () =>
-  request("https://jsonplaceholder.typicode.com/posts", receive);
-
-export const decrement = () => debounce(posts, 500);
+export const increment = () => debounce(() => inc(), 250);
+export const decrement = () =>
+  debounce(
+    () => http("https://jsonplaceholder.typicode.com/posts", () => dec()),
+    250
+  );

@@ -16,6 +16,8 @@ export const factory = function(options: Options) {
 
   const middleware: Middleware = function middleware(store) {
     return next => async action => {
+      const result = next(action);
+
       if (options.action.includes(action.type)) {
         let path;
         let resolve;
@@ -33,7 +35,7 @@ export const factory = function(options: Options) {
         }
       }
 
-      return next(action);
+      return result;
     };
   };
 

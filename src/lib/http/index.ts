@@ -2,7 +2,7 @@ import "isomorphic-fetch";
 import { Middleware, Action } from "redux";
 
 export enum HttpActionType {
-  REQUEST = "@http/request"
+  HTTP = "@fx/http"
 }
 
 export interface HttpAction<T> extends Action<HttpActionType> {
@@ -15,13 +15,13 @@ export interface HttpAction<T> extends Action<HttpActionType> {
   };
 }
 
-export function request<T>(
+export function http<T>(
   url: string,
   action: T,
   options: any = {}
 ): HttpAction<T> {
   return {
-    type: HttpActionType.REQUEST,
+    type: HttpActionType.HTTP,
     meta: {
       effect: {
         url,
@@ -32,22 +32,18 @@ export function request<T>(
   };
 }
 
-export const middleware: Middleware = function middleware(store) {
+export const middleware: Middleware = function middleware() {
   return next => async (action: HttpAction<any>) => {
-    const result = next(action);
-
-    if (action.type === HttpActionType.REQUEST) {
+    if (action.type === HttpActionType.HTTP) {
       const { effect } = action.meta;
       const { url, options = {} } = effect;
 
-      throw new Error("Fun!");
-
       await fetch(url, options)
         .then((data: any) => data.json())
-        .then((payload: any) => store.dispatch(effect.action(payload)));
+        .then((payload: any) => next(effect.action(payload)));
     }
 
-    return result;
+    return next(action);
   };
 };
 

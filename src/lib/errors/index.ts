@@ -5,9 +5,9 @@ export interface ErrorHandler<T> {
 }
 
 export default function<T>(errorHandler: ErrorHandler<T>): Middleware {
-  return store => next => (action: AnyAction) => {
+  return store => next => async (action: AnyAction) => {
     try {
-      return next(action);
+      return await next(action);
     } catch (error) {
       errorHandler(error, store.getState(), action, store.dispatch);
       return error;

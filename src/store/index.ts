@@ -10,7 +10,7 @@ import resolver from "./resolver";
 import configureErrorHandler from "@app/lib/errors";
 import { AppState } from "@app/models";
 
-const debounce = debouncer([100, 500, 1000]);
+const debounce = debouncer([250, 500, 1000]);
 const errors = configureErrorHandler<AppState>(
   (error, state, action, dispatch) => {
     console.log(error);
