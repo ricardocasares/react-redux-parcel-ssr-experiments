@@ -3,15 +3,16 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 // state
 import { AppState } from "@app/models";
 
-// redux modules
+// reducers
 import counter from "./counter";
+import router from "@app/lib/history";
 
 // middleware
 import http from "@app/lib/http";
 import delay from "@app/lib/delay";
 import debouncer from "@app/lib/debounce";
 import configureErrorHandler from "@app/lib/errors";
-import router, { middleware as history } from "@app/lib/history";
+import { middleware as history } from "@app/lib/history";
 import resolver from "./resolver";
 
 // debouncer configuration
