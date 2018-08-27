@@ -1,16 +1,23 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 
-// import blog from "./blog";
+// redux modules
 import counter from "./counter";
+
+// middleware
+import http from "@app/lib/http";
 import delay from "@app/lib/delay";
 import debouncer from "@app/lib/debounce";
-import http from "@app/lib/http";
+import configureErrorHandler from "@app/lib/errors";
 import router, { middleware as history } from "@app/lib/history";
 import resolver from "./resolver";
-import configureErrorHandler from "@app/lib/errors";
+
+// state
 import { AppState } from "@app/models";
 
+// debouncer configuration
 const debounce = debouncer([250, 500, 1000]);
+
+// error handler configuration
 const errors = configureErrorHandler<AppState>(
   (error, state, action, dispatch) => {
     console.log(error);
@@ -19,15 +26,15 @@ const errors = configureErrorHandler<AppState>(
   }
 );
 
+const middleware = [errors, resolver, http, delay, debounce, history];
+
 const enhancers =
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose;
 
 const reducer = combineReducers({ counter, router });
-const enhancer = enhancers(
-  applyMiddleware(errors, resolver, http, delay, debounce, history)
-);
+const enhancer = enhancers(applyMiddleware(...middleware));
 
 export default function configureStore(state = {}) {
   return createStore(reducer, state, enhancer);
