@@ -1,5 +1,5 @@
 import React from "react";
-import * as express from "express";
+import express from "express";
 import { Provider } from "react-redux";
 import { push } from "@app/lib/history";
 import { renderToString } from "react-dom/server";
@@ -12,7 +12,7 @@ import configureStore from "@app/store";
 async function renderRoute(req: Request, res: Response) {
   const ctx: any = {};
   const store = configureStore();
-  store.dispatch(push(req.url));
+  await store.dispatch(push(req.url));
 
   const application = renderToString(
     <Provider store={store}>

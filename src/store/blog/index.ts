@@ -16,7 +16,7 @@ export const fetchPosts: EffectHttpActionCreator<typeof FETCH_POSTS> = () => ({
   type: EFFECT_HTTP,
   meta: {
     type: FETCH_POSTS,
-    resource: "https://api-bemba.analogic.al/stations",
+    resource: "https://jsonplaceholder.typicode.com/posts",
     transform: (data = []) => data.slice(0, 4)
   }
 });

@@ -12,10 +12,6 @@ type Counter = {
 
 const Count: SFC<Pick<Counter, "count">> = ({ count }) => <span>{count}</span>;
 
-const ConnectedCount = connect(({ counter }: AppState) => ({
-  count: counter.count
-}))(Count);
-
 const Counter: SFC<Counter> = ({ increment, decrement }) => (
   <div>
     <h1>
@@ -25,6 +21,10 @@ const Counter: SFC<Counter> = ({ increment, decrement }) => (
     <button onClick={decrement}>dec</button>
   </div>
 );
+
+const ConnectedCount = connect(({ counter }: AppState) => ({
+  count: counter.count
+}))(Count);
 
 export default connect(
   null,
