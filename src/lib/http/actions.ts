@@ -2,7 +2,7 @@ import { HttpAction, HttpActionType } from "./types";
 
 export function http<T>(
   url: string,
-  action: T,
+  action: (payload?: any) => T,
   options: any = {}
 ): HttpAction<T> {
   return {
