@@ -4,18 +4,14 @@ import { Post, BlogAction, BlogActionType } from "./types";
 export function fetchPostsPending(): BlogAction {
   return {
     type: BlogActionType.POSTS_FETCH_PENDING,
-    payload: {
-      posts: []
-    }
+    payload: []
   };
 }
 
-export function fetchPostsSuccess(posts: Post[]): BlogAction {
+export function fetchPostsSuccess(payload: Post[]): BlogAction {
   return {
     type: BlogActionType.POSTS_FETCH_SUCCESS,
-    payload: {
-      posts
-    }
+    payload
   };
 }
 

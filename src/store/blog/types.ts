@@ -7,9 +7,7 @@ export enum BlogActionType {
 }
 
 export interface BlogAction extends Action<BlogActionType> {
-  payload: {
-    posts: Post[];
-  };
+  payload: Post[];
 }
 
 export interface BlogState {

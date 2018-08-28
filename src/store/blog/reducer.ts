@@ -15,7 +15,7 @@ export const reducer: Reducer<BlogState, BlogAction> = function(
         ...state,
         error: false,
         fetching: false,
-        posts: action.payload.posts
+        posts: action.payload
       };
     default:
       return state;
