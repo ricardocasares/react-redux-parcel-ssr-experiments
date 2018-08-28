@@ -4,6 +4,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { AppState } from "@app/models";
 
 // reducers
+import blog from "./blog";
 import counter from "./counter";
 import router from "@app/lib/history";
 
@@ -21,7 +22,7 @@ const debounce = debouncer([250, 500, 1000]);
 // error handler configuration
 const errors = configureErrorHandler<AppState>(
   (error, state, action, dispatch) => {
-    console.log(error);
+    console.error(error);
     console.log(state);
     console.log(action);
   }
@@ -34,7 +35,7 @@ const enhancers =
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose;
 
-const reducer = combineReducers({ counter, router });
+const reducer = combineReducers({ router, blog, counter });
 const enhancer = enhancers(applyMiddleware(...middleware));
 
 export default function configureStore(state = {}) {

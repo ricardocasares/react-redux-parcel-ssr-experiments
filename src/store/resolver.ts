@@ -1,13 +1,12 @@
 import config from "@app/lib/data";
 import { HistoryActionType } from "@app/lib/history";
-// import { decrement } from "@app/store/counter";
+import { fetchPosts } from "@app/store/blog";
 
 export default config({
   action: [HistoryActionType.POP, HistoryActionType.PUSH],
   routes: {
-    "/": async params => {},
-    "/about": async (dispatch, params) => {
-      // await dispatch(decrement());
+    "/blog": async (dispatch, params) => {
+      await dispatch(await fetchPosts());
     }
   }
 });

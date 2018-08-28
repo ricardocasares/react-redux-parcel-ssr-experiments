@@ -14,6 +14,7 @@ export const Index: SFC<About> = ({ router }) => (
     </Helmet>
     <h1>{router.path}</h1>
     <Link to="/?test=5&move=1">Home</Link>
+    <Link to="/blog">Blog</Link>
     <h2>About</h2>
   </div>
 );

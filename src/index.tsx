@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Switch, Router, Route } from "libreact/lib/route";
 
 import Index from "@app/containers/index";
+import Blog from "@app/containers/blog";
 import About from "@app/containers/about";
 import { AppState } from "@app/models";
 
@@ -14,6 +15,9 @@ const RoutedApp: SFC<RoutedApp> = ({ router }) => (
     <Switch>
       <Route match={"/about"}>
         <About />
+      </Route>
+      <Route exact match={"/blog"}>
+        <Blog />
       </Route>
       <Route match={"/"}>
         <Index />
