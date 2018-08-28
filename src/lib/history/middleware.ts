@@ -1,11 +1,11 @@
 import { parse } from "urlite";
-import { Store, Middleware } from "redux";
+import { Middleware } from "redux";
 
 import { pop } from "./actions";
 import { browser } from "@app/lib/util";
 import { HistoryAction, HistoryActionType } from "./types";
 
-export const middleware: Middleware = (store: Store) => {
+export const middleware: Middleware = store => {
   if (browser()) {
     window.onpopstate = function() {
       store.dispatch(pop(parse(document.location.href).path));
