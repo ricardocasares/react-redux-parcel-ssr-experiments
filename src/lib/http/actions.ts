@@ -1,8 +1,8 @@
 import { HttpAction, HttpActionType } from "./types";
 
-export function http<T>(
+export function http<T, K>(
   url: string,
-  action: (payload?: any) => T,
+  action: (payload: K) => T,
   options: any = {}
 ): HttpAction<T> {
   return {

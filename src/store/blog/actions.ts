@@ -20,8 +20,8 @@ export function fetchPostsSuccess(posts: Post[]): BlogAction {
 }
 
 export function fetchPosts(): HttpAction<BlogAction> {
-  return http<BlogAction>(
+  return http<BlogAction, Post[]>(
     "https://jsonplaceholder.typicode.com/posts",
-    (posts: Post[]) => fetchPostsSuccess(posts)
+    posts => fetchPostsSuccess(posts)
   );
 }

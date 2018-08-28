@@ -8,7 +8,7 @@ export interface HttpAction<T> extends Action<HttpActionType> {
   meta: {
     effect: {
       url: string;
-      action: (payload?: any) => T;
+      action: (payload: any) => T;
       options?: any;
     };
   };
