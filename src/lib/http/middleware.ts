@@ -20,7 +20,7 @@ export const middleware: Middleware = function middleware() {
   };
 };
 
-function checkResponse(response: Response): Response {
+export function checkResponse(response: Response): Response {
   if (!response.ok) {
     throw new Error(response.statusText);
   }
