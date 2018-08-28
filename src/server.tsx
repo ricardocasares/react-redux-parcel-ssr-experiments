@@ -1,9 +1,11 @@
 import React from "react";
+import express from "express";
+import compression from "compression";
 import { Provider } from "react-redux";
 import { push } from "@app/lib/history";
 import { renderToString } from "react-dom/server";
 import { HelmetProvider } from "react-helmet-async";
-import express, { static as assets, Request, Response } from "express";
+import { static as assets, Request, Response } from "express";
 
 import App from "@app/index";
 import configureStore from "@app/store";
@@ -11,7 +13,7 @@ import configureStore from "@app/store";
 async function renderRoute(req: Request, res: Response) {
   const ctx: any = {};
   const store = configureStore();
-  store.dispatch(push(req.url));
+  await store.dispatch(push(req.url));
 
   const application = renderToString(
     <Provider store={store}>
@@ -35,6 +37,7 @@ async function renderRoute(req: Request, res: Response) {
 }
 
 express()
+  .use(compression())
   .use(assets("./dist"))
   .use(assets("./static"))
   .get("*", renderRoute)

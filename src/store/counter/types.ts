@@ -4,9 +4,11 @@ export interface CounterState {
   count: number;
 }
 
-export interface CounterAction extends Action<CounterActionTypes> {}
+export interface CounterAction extends Action<CounterActionType> {
+  payload: number;
+}
 
-export enum CounterActionTypes {
+export enum CounterActionType {
   INCREMENT = "@app/counter/increment",
   DECREMENT = "@app/counter/decrement"
 }

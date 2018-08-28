@@ -1,9 +1,15 @@
-import { CounterAction, CounterActionTypes } from "./types";
+import { debounce } from "@app/lib/debounce";
+import { CounterAction, CounterActionType } from "./types";
 
-export const increment = (): CounterAction => ({
-  type: CounterActionTypes.INCREMENT
+const inc = (payload: number = 1): CounterAction => ({
+  type: CounterActionType.INCREMENT,
+  payload
 });
 
-export const decrement = (): CounterAction => ({
-  type: CounterActionTypes.DECREMENT
+const dec = (payload: number = 1): CounterAction => ({
+  type: CounterActionType.DECREMENT,
+  payload
 });
+
+export const increment = () => debounce(() => inc(), 250);
+export const decrement = () => debounce(() => dec(), 250);
