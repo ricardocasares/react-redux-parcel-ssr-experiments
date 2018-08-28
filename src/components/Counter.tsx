@@ -5,12 +5,15 @@ import { AppState } from "@app/models";
 import * as actions from "@app/store/counter/actions";
 
 type Counter = {
-  count: number;
   increment: typeof actions.increment;
   decrement: typeof actions.decrement;
 };
 
-const Count: SFC<Pick<Counter, "count">> = ({ count }) => <span>{count}</span>;
+type Count = {
+  count: number;
+};
+
+const Count: SFC<Count> = ({ count }) => <span>{count}</span>;
 
 const Counter: SFC<Counter> = ({ increment, decrement }) => (
   <div>
