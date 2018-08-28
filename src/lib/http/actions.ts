@@ -1,10 +1,10 @@
 import { HttpAction, HttpActionType } from "./types";
 
-export function http<T, K>(
+export function http<A, P>(
   url: string,
-  action: (payload: K) => T,
+  action: (payload: P) => A,
   options: any = {}
-): HttpAction<T> {
+): HttpAction<A, P> {
   return {
     type: HttpActionType.HTTP,
     meta: {

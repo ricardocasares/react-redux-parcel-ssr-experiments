@@ -3,7 +3,7 @@ import { Middleware } from "redux";
 import { HttpAction, HttpActionType } from "./types";
 
 export const middleware: Middleware = function middleware() {
-  return next => async (action: HttpAction<any>) => {
+  return next => async (action: HttpAction<any, any>) => {
     const result = next(action);
 
     if (action.type === HttpActionType.HTTP) {
