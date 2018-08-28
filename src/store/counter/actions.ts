@@ -1,20 +1,15 @@
-import { http } from "@app/lib/http";
 import { debounce } from "@app/lib/debounce";
-import { CounterAction, CounterActionTypes } from "./types";
+import { CounterAction, CounterActionType } from "./types";
 
 const inc = (payload: number = 1): CounterAction => ({
-  type: CounterActionTypes.INCREMENT,
+  type: CounterActionType.INCREMENT,
   payload
 });
 
 const dec = (payload: number = 1): CounterAction => ({
-  type: CounterActionTypes.DECREMENT,
+  type: CounterActionType.DECREMENT,
   payload
 });
 
 export const increment = () => debounce(() => inc(), 250);
-export const decrement = () =>
-  debounce(
-    () => http("https://jsonplaceholder.typicode.com/posts", () => dec()),
-    250
-  );
+export const decrement = () => debounce(() => dec(), 250);
