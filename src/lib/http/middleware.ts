@@ -4,6 +4,8 @@ import { HttpAction, HttpActionType } from "./types";
 
 export const middleware: Middleware = function middleware() {
   return next => async (action: HttpAction<any>) => {
+    const result = next(action);
+
     if (action.type === HttpActionType.HTTP) {
       const { effect } = action.meta;
       const { url, options = {} } = effect;
@@ -14,7 +16,7 @@ export const middleware: Middleware = function middleware() {
         .then((payload: any) => next(effect.action(payload)));
     }
 
-    return next(action);
+    return result;
   };
 };
 
