@@ -1,5 +1,6 @@
 import React from "react";
 import express from "express";
+import compression from "compression";
 import { Provider } from "react-redux";
 import { push } from "@app/lib/history";
 import { renderToString } from "react-dom/server";
@@ -36,6 +37,7 @@ async function renderRoute(req: Request, res: Response) {
 }
 
 express()
+  .use(compression())
   .use(assets("./dist"))
   .use(assets("./static"))
   .get("*", renderRoute)
