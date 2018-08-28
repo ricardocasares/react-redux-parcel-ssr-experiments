@@ -1,10 +1,5 @@
-declare module "urlite" {
-  const parse: any;
-  export { parse };
-}
-
-declare module "urlite/extra" {
-  const parse: any;
+declare module "urlite*" {
+  let parse: any;
   export { parse };
 }
 

@@ -1,4 +1,4 @@
-import { http, HttpAction } from "@app/lib/http";
+import { http, HttpAction } from "app/lib/http";
 import { Post, BlogAction, BlogActionType } from "./types";
 
 export function fetchPostsPending(): BlogAction {

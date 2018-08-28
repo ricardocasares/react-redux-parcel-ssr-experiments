@@ -1,8 +1,8 @@
 import { Action } from "redux";
 
 export enum HistoryActionType {
-  POP = "@app/history/pop",
-  PUSH = "@app/history/push"
+  POP = "app/history/pop",
+  PUSH = "app/history/push"
 }
 
 export interface HistoryAction extends Action<HistoryActionType> {

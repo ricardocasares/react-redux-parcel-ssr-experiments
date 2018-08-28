@@ -2,7 +2,7 @@ import { parse } from "urlite";
 import { Middleware } from "redux";
 
 import { pop } from "./actions";
-import { browser } from "@app/lib/util";
+import { browser } from "app/lib/util";
 import { HistoryAction, HistoryActionType } from "./types";
 
 export const middleware: Middleware = store => {

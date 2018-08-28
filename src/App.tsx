@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 // @todo: get typings for libreact
 import { Switch, Router, Route } from "libreact/lib/route";
 
-import Index from "@app/containers/index";
-import Blog from "@app/containers/blog";
-import About from "@app/containers/about";
-import { AppState } from "@app/models";
+import Index from "app/containers/index";
+import Blog from "app/containers/blog";
+import About from "app/containers/about";
+import { AppState } from "app/models";
 
 type RoutedApp = Pick<AppState, "router">;
 

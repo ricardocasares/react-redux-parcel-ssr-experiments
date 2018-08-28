@@ -9,6 +9,6 @@ export interface CounterAction extends Action<CounterActionType> {
 }
 
 export enum CounterActionType {
-  INCREMENT = "@app/counter/increment",
-  DECREMENT = "@app/counter/decrement"
+  INCREMENT = "app/counter/increment",
+  DECREMENT = "app/counter/decrement"
 }

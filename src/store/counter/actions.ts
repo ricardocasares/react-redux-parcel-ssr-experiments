@@ -1,4 +1,4 @@
-import { debounce } from "@app/lib/debounce";
+import { debounce } from "app/lib/debounce";
 import { CounterAction, CounterActionType } from "./types";
 
 const inc = (payload: number = 1): CounterAction => ({

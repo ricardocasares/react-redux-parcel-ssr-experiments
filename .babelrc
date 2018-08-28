@@ -1,10 +1,12 @@
 {
+  "presets": ["razzle/babel"],
   "plugins": [
     [
       "module-resolver",
       {
+        "root": ["."],
         "alias": {
-          "@app": ["./src"]
+          "app": "./src"
         }
       }
     ]

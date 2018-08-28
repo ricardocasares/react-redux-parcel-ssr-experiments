@@ -1,8 +1,8 @@
 import React, { SFC } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { AppState } from "@app/models";
-import * as actions from "@app/store/counter/actions";
+import { AppState } from "app/models";
+import * as actions from "app/store/counter/actions";
 
 type Counter = {
   increment: typeof actions.increment;

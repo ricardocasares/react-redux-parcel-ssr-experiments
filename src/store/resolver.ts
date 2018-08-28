@@ -1,6 +1,6 @@
-import config from "@app/lib/data";
-import { HistoryActionType } from "@app/lib/history";
-import { fetchPosts } from "@app/store/blog";
+import config from "app/lib/data";
+import { HistoryActionType } from "app/lib/history";
+import { fetchPosts } from "app/store/blog";
 
 export default config({
   action: [HistoryActionType.POP, HistoryActionType.PUSH],

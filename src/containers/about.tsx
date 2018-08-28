@@ -2,8 +2,8 @@ import React, { SFC } from "react";
 import { connect } from "react-redux";
 import Helmet from "react-helmet-async";
 
-import Link from "@app/components/Link";
-import { AppState } from "@app/models";
+import Link from "app/components/Link";
+import { AppState } from "app/models";
 
 export type About = Pick<AppState, "router">;
 

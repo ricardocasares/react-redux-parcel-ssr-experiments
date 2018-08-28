@@ -2,9 +2,9 @@ import React, { SFC } from "react";
 import { connect } from "react-redux";
 import Helmet from "react-helmet-async";
 
-import Link from "@app/components/Link";
-import Counter from "@app/components/Counter";
-import { AppState } from "@app/models";
+import Link from "app/components/Link";
+import Counter from "app/components/Counter";
+import { AppState } from "app/models";
 
 export type Index = Pick<AppState, "router">;
 
