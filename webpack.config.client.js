@@ -1,17 +1,19 @@
 "use strict";
 
+const pkg = require("./package.json");
 const path = require("path");
 const webpack = require("webpack");
-const pkg = require("./package.json");
-const SizePlugin = require("size-plugin");
 const ForkTsChecker = require("fork-ts-checker-webpack-plugin");
 const UglifyJS = require("uglifyjs-webpack-plugin");
 
 module.exports = {
   context: __dirname,
+
   entry: {
     client: "./src/client.tsx",
-    vendor: Object.keys(pkg.dependencies).filter(d => !["express"].includes(d))
+    vendor: Object.keys(pkg.dependencies).filter(
+      d => !["express", "compression"].includes(d)
+    )
   },
   output: {
     filename: "[name].js",
@@ -36,7 +38,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new SizePlugin(),
     new ForkTsChecker(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
@@ -67,7 +68,7 @@ module.exports = {
       }
     },
     runtimeChunk: {
-      name: entrypoint => `runtime.${entrypoint.name}`
+      name: entry => `runtime.${entry.name}`
     }
   }
 };
