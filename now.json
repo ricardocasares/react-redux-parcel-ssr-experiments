@@ -1,8 +1,0 @@
-{
-  "name": "ssr-experiments",
-  "type": "docker",
-  "features": {
-    "cloud": "v2"
-  },
-  "alias": "ssr-experiments.analogic.al"
-}

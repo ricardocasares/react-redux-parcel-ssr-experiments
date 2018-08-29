@@ -9,6 +9,14 @@
     "url": "github:ricardocasares/ssr-experiments"
   },
   "license": "MIT",
+  "now": {
+    "name": "ssr-experiments",
+    "type": "docker",
+    "features": {
+      "cloud": "v2"
+    },
+    "alias": "ssr-experiments.analogic.al"
+  },
   "scripts": {
     "dev": "run-p watch start:dev",
     "watch": "run-p watch:client watch:server",
