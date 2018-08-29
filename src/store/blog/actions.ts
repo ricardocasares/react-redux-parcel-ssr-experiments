@@ -15,7 +15,7 @@ export function fetchPostsSuccess(payload: Post[]): BlogAction {
   };
 }
 
-export function fetchPosts(): HttpAction<BlogAction> {
+export function fetchPosts(): HttpAction<BlogAction, Post[]> {
   return http<BlogAction, Post[]>(
     "https://jsonplaceholder.typicode.com/posts",
     posts => fetchPostsSuccess(posts)

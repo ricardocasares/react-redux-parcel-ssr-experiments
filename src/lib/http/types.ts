@@ -4,11 +4,11 @@ export enum HttpActionType {
   HTTP = "@fx/http"
 }
 
-export interface HttpAction<T> extends Action<HttpActionType> {
+export interface HttpAction<A, P> extends Action<HttpActionType> {
   meta: {
     effect: {
       url: string;
-      action: (payload: any) => T;
+      action: (payload: P) => A;
       options?: any;
     };
   };
