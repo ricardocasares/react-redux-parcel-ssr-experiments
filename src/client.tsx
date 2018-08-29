@@ -3,7 +3,7 @@ import { hydrate } from "react-dom";
 import { Provider } from "react-redux";
 import { HelmetProvider } from "react-helmet-async";
 
-import App from ".";
+import App from "./App";
 import configureStore from "app/store";
 
 const store = configureStore(window.__REDUX_STATE);

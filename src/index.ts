@@ -1,5 +1,5 @@
 import express from "express";
-import app from "./server";
+import server from "./server";
 
 if (module.hot) {
   module.hot.accept("./server", () => {
@@ -10,11 +10,9 @@ if (module.hot) {
 const port = process.env.PORT || 3000;
 
 export default express()
-  .use(app)
+  .use(server)
   .listen(port, (err: Error) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
+    if (err) return console.error(err);
+
     console.log(`> Started on port ${port}`);
   });
