@@ -20,13 +20,11 @@ import resolver from "./resolver";
 const debounce = debouncer([250, 500, 1000]);
 
 // error handler configuration
-const errors = configureErrorHandler<AppState>(
-  (error, state, action, dispatch) => {
-    console.error(error);
-    console.log(state);
-    console.log(action);
-  }
-);
+const errors = configureErrorHandler<AppState>((error, state, action) => {
+  console.error(error);
+  console.log(state);
+  console.log(action);
+});
 
 const middleware = [errors, resolver, http, delay, debounce, history];
 

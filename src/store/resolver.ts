@@ -5,7 +5,7 @@ import { fetchPosts } from "@app/store/blog";
 export default config({
   action: [HistoryActionType.POP, HistoryActionType.PUSH],
   routes: {
-    "/blog": async (dispatch, params) => {
+    "/blog": async (dispatch /*params*/) => {
       await dispatch(fetchPosts());
     }
   }

@@ -1,4 +1,4 @@
-import { Action, AnyAction, Middleware } from "redux";
+import { Action, Middleware } from "redux";
 
 export enum DelayActionType {
   DELAY = "@fx/delay"
@@ -29,7 +29,7 @@ export function sleep(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-export const middleware: Middleware = function middleware(store) {
+export const middleware: Middleware = function middleware() {
   return next => async (action: DelayedAction<any>) => {
     const result = next(action);
 
