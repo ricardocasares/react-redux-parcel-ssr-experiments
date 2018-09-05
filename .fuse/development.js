@@ -1,46 +1,31 @@
 const { FuseBox, QuantumPlugin } = require("fuse-box");
+const base = require("./base");
+const server = FuseBox.init({ ...base, target: "node" });
+const client = FuseBox.init({ ...base, target: "browser@es5" });
 
-const fuse = FuseBox.init({
-  homeDir: "src/",
-  output: "dist/$name.js",
-  sourceMaps: true,
-  alias: {
-    "@app": "~"
-  },
-  log: {
-    enabled: false
-  },
-  allowSyntheticDefaultImports: true
-});
-
-fuse
+client
   .bundle("vendor")
   .instructions("~ client.tsx")
   .completed(() => console.log("> vendors bundled"))
   .watch();
 
-fuse
+client
   .bundle("app")
-  .splitConfig({
-    target: "browser"
-  })
-  .instructions("> client.tsx")
+  .instructions("> [client.tsx]")
   .hmr()
   .completed(() => console.log("> client bundled"))
   .watch();
 
-fuse
+server
   .bundle("server")
-  .splitConfig({
-    target: "node"
-  })
   .instructions("> [server.tsx]")
   .completed(() => console.log("> server bundled"))
   .completed(proc => proc.start())
   .watch();
 
-fuse.run();
-fuse.dev({
+client.run();
+server.run();
+client.dev({
   proxy: {
     "/": {
       target: "http://localhost:3000"

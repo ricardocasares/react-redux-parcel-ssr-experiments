@@ -3,6 +3,7 @@ import express from "express";
 import compression from "compression";
 import { Provider } from "react-redux";
 import { push } from "@app/lib/history";
+import { production } from "@app/lib/util";
 import { renderToString } from "react-dom/server";
 import { HelmetProvider } from "react-helmet-async";
 import { static as assets, Request, Response } from "express";
@@ -31,8 +32,9 @@ async function renderRoute(req: Request, res: Response) {
       <body>
         <div id="root">${application}</div>
         <script>__REDUX_STATE = ${JSON.stringify(store.getState())}</script>
-        <script async src="/vendor.js"></script>
-        <script async src="/app.js"></script>
+        ${production() ? '<script src="/api.js"></script>' : ""}
+        <script src="/vendor.js"></script>
+        <script src="/app.js"></script>
       </body>
     </html>`);
 }
