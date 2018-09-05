@@ -31,7 +31,8 @@ async function renderRoute(req: Request, res: Response) {
       <body>
         <div id="root">${application}</div>
         <script>__REDUX_STATE = ${JSON.stringify(store.getState())}</script>
-        <script async src="/client.js"></script>
+        <script async src="/vendor.js"></script>
+        <script async src="/app.js"></script>
       </body>
     </html>`);
 }
