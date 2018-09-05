@@ -1,4 +1,5 @@
-const { FuseBox, QuantumPlugin } = require("fuse-box");
+const { FuseBox } = require("fuse-box");
+
 const base = require("./base");
 const server = FuseBox.init({ ...base, target: "node" });
 const client = FuseBox.init({ ...base, target: "browser@es5" });
