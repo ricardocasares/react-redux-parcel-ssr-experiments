@@ -26,10 +26,13 @@ export function debounce<T>(action: T, ms: number): DebouncedAction<T> {
 }
 
 function debouncer(fn: any, wait: number = 100): (action: any) => void {
-  var timeout: any;
+  let timeout: any;
+
   return function() {
-    var args = arguments;
+    const args = arguments;
+
     clearTimeout(timeout);
+
     timeout = setTimeout(function() {
       fn.apply(null, args);
     }, wait);
