@@ -10,7 +10,7 @@ const server = FuseBox.init({
 const client = FuseBox.init({
   ...base,
   target: "browser@es5",
-  plugins: [QuantumPlugin(), UglifyJSPlugin()]
+  plugins: [QuantumPlugin({ treeshake: true }), UglifyJSPlugin()]
 });
 
 client
