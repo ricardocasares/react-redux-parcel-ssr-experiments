@@ -32,7 +32,6 @@ async function renderRoute(req: Request, res: Response) {
       <body>
         <div id="root">${application}</div>
         <script>__REDUX_STATE = ${JSON.stringify(store.getState())}</script>
-        ${production() ? '<script src="/api.js"></script>' : ""}
         <script src="/vendor.js"></script>
         <script src="/app.js"></script>
       </body>
