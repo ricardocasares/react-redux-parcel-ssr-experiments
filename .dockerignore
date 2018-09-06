@@ -1,7 +1,7 @@
 *
 !src
 !static
-!.babelrc
+!.config
 !package.json
 !tsconfig.json
 !package-lock.json

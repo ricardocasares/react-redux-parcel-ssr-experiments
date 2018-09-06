@@ -1,4 +1,5 @@
 dist
 *.log
 .cache
+.fusebox
 node_modules
