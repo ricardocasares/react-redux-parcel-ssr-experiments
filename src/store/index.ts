@@ -26,7 +26,7 @@ const errors = configureErrorHandler<AppState>((error, state, action) => {
   console.log(action);
 });
 
-const middleware = [errors, resolver, http, delay, debounce, history];
+const middleware = [errors, resolver, delay, debounce, history, http];
 
 const enhancers =
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
