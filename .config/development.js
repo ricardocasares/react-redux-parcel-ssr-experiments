@@ -2,7 +2,7 @@ const { FuseBox } = require("fuse-box");
 
 const base = require("./base");
 const server = FuseBox.init({ ...base, target: "server" });
-const client = FuseBox.init({ ...base, target: "browser" });
+const client = FuseBox.init({ ...base, target: "browser@es5" });
 
 client
   .bundle("vendor")
