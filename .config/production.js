@@ -1,4 +1,4 @@
-const { FuseBox, QuantumPlugin } = require("fuse-box");
+const { FuseBox, QuantumPlugin, UglifyESPlugin } = require("fuse-box");
 
 const base = require("./base");
 
@@ -10,7 +10,7 @@ const server = FuseBox.init({
 const client = FuseBox.init({
   ...base,
   target: "browser@es5",
-  plugins: [QuantumPlugin()]
+  plugins: [QuantumPlugin(), UglifyESPlugin()]
 });
 
 client
