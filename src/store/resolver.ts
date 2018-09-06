@@ -9,7 +9,6 @@ export default config({
   actions: [HistoryActionType.POP, HistoryActionType.PUSH],
   routes: {
     "/blog": async (dispatch /*params*/) => {
-      await sleep(1000);
       await dispatch(fetchPosts());
     }
   }

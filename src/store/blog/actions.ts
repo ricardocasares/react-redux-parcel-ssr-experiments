@@ -1,4 +1,5 @@
 import { http, HttpAction } from "@app/lib/http";
+import { delay, DelayedAction } from "@app/lib/delay";
 import { Post, BlogAction, BlogActionType } from "./types";
 
 export function fetchPostsPending(): BlogAction {
@@ -15,9 +16,13 @@ export function fetchPostsSuccess(payload: Post[]): BlogAction {
   };
 }
 
-export function fetchPosts(): HttpAction<BlogAction, Post[]> {
-  return http<BlogAction, Post[]>(
-    "https://jsonplaceholder.typicode.com/posts",
-    posts => fetchPostsSuccess(posts)
+export function fetchPosts() {
+  return delay(
+    () =>
+      http<BlogAction, Post[]>(
+        "https://jsonplaceholder.typicode.com/posts",
+        posts => fetchPostsSuccess(posts)
+      ),
+    250
   );
 }
