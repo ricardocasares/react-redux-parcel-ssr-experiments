@@ -8,10 +8,8 @@ export default config({
   action: [HistoryActionType.POP, HistoryActionType.PUSH],
   routes: {
     "/blog": async (dispatch /*params*/) => {
-      console.log("loading posts");
+      await sleep(1000);
       await dispatch(fetchPosts());
-      await sleep(2000);
-      console.log("posts loaded");
     }
   }
 });
