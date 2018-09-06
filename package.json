@@ -10,10 +10,12 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "node .fuse/development.js",
-    "build": "node .fuse/production.js",
-    "watch:types": "tsc --noEmit -w",
-    "build:types": "tsc --noEmit",
+    "dev": "run-p bundle:dev",
+    "build": "run-s tsc bundle:prod",
+    "tsc": "tsc --noEmit",
+    "tsc:watch": "npm run tsc -- -w",
+    "bundle:dev": "node .config/development.js",
+    "bundle:prod": "node .config/production.js",
     "start": "node dist/server.js"
   },
   "dependencies": {
@@ -26,8 +28,6 @@
     "react-helmet-async": "^0.1.0-alpha",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
-    "uglify-es": "^3.3.9",
-    "uglify-js": "^3.4.9",
     "url-pattern": "^1.0.3",
     "urlite": "^2.0.2"
   },
@@ -46,6 +46,8 @@
     "npm-run-all": "^4.1.3",
     "parcel-bundler": "^1.9.7",
     "prop-types": "^15.6.2",
-    "typescript": "^3.0.3"
+    "typescript": "^3.0.3",
+    "uglify-es": "^3.3.9",
+    "uglify-js": "^3.4.9"
   }
 }
