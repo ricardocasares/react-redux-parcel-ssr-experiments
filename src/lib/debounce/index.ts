@@ -48,12 +48,11 @@ export const factory = function(config: number[]) {
 
     return next => (action: DebouncedAction<any>) => {
       const result = next(action);
-
       if (action.type === DebounceActionType.DEBOUNCE) {
         const { effect } = action.meta;
-        const debouncer = debouncers[effect.ms];
+        const debounced = debouncers[effect.ms];
 
-        debouncer(effect.action());
+        debounced(effect.action());
       }
 
       return result;
