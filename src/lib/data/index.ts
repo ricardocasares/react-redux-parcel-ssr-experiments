@@ -19,8 +19,10 @@ export const factory = function(options: Options) {
   const middleware: Middleware = function middleware(store) {
     return next => async action => {
       if (options.actions.includes(action.type)) {
-        let path;
         let result;
+        if (!options.wait) result = next(action);
+
+        let path;
         let resolve;
         let route = 0;
         let match = false;
@@ -31,10 +33,6 @@ export const factory = function(options: Options) {
           match = path.match(options.extract(action.payload));
           ++route;
         } while (!match && routes[route]);
-
-        if (!options.wait) {
-          result = next(action);
-        }
 
         if (match) {
           await resolve(store.dispatch, match);
