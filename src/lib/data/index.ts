@@ -3,7 +3,8 @@ import { Dispatch, Middleware } from "redux";
 
 export interface Options {
   wait?: boolean;
-  action: string[];
+  actions: string[];
+  extract: (payload: any) => string;
   routes: {
     [x: string]: (store: Dispatch, params: any) => any;
   };
@@ -17,7 +18,7 @@ export const factory = function(options: Options) {
 
   const middleware: Middleware = function middleware(store) {
     return next => async action => {
-      if (options.action.includes(action.type)) {
+      if (options.actions.includes(action.type)) {
         let path;
         let result;
         let resolve;
@@ -27,7 +28,7 @@ export const factory = function(options: Options) {
         do {
           path = routes[route].path;
           resolve = routes[route].resolve;
-          match = path.match(action.payload);
+          match = path.match(options.extract(action.payload));
           ++route;
         } while (!match && routes[route]);
 

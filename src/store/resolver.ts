@@ -5,7 +5,8 @@ import { sleep } from "@app/lib/delay";
 
 export default config({
   wait: true,
-  action: [HistoryActionType.POP, HistoryActionType.PUSH],
+  extract: payload => payload,
+  actions: [HistoryActionType.POP, HistoryActionType.PUSH],
   routes: {
     "/blog": async (dispatch /*params*/) => {
       await sleep(1000);
