@@ -8,8 +8,7 @@ module.exports = {
     "@app": "~"
   },
   log: {
-    showBundledFiles: false, // Don't list all the bundled files every time we bundle
-    clearTerminalOnBundle: false
+    showBundledFiles: false
   },
   automaticAlias: false,
   allowSyntheticDefaultImports: true
