@@ -52,7 +52,7 @@ export const factory = function(config: number[]) {
         const { effect } = action.meta;
         const debounced = debouncers[effect.ms];
 
-        debounced(effect.action());
+        return debounced(effect.action());
       }
 
       return result;

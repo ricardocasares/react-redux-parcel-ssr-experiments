@@ -10,7 +10,7 @@ export const middleware: Middleware = function middleware() {
       const { effect } = action.meta;
       const { url, options = {} } = effect;
 
-      await fetch(url, options)
+      return await fetch(url, options)
         .then(checkResponse)
         .then((data: any) => data.json())
         .then((payload: any) => next(effect.action(payload)));

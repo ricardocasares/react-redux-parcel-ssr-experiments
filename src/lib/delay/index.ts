@@ -35,7 +35,7 @@ export const middleware: Middleware = function middleware() {
 
     if (action.type === DelayActionType.DELAY) {
       await sleep(action.meta.effect.ms);
-      next(action.meta.effect.action());
+      return next(action.meta.effect.action());
     }
 
     return result;

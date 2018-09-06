@@ -13,12 +13,10 @@ export const middleware: Middleware = store => {
   }
 
   return next => (action: HistoryAction) => {
-    const result = next(action);
-
     if (browser() && action.type === HistoryActionType.PUSH) {
       history.pushState(undefined, undefined, action.payload);
     }
 
-    return result;
+    return next(action);
   };
 };
