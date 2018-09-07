@@ -1,6 +1,6 @@
 import { Post } from "@app/models";
-import { http, HttpAction } from "@app/lib/http";
-import { delay, DelayAction } from "@app/lib/delay";
+import { http } from "@app/lib/http";
+import { delay } from "@app/lib/delay";
 import { BlogAction, BlogType } from "./types";
 
 export function postsPending(): BlogAction {
