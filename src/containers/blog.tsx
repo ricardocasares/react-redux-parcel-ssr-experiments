@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import Helmet from "react-helmet-async";
 
 import Link from "@app/components/Link";
-import { AppState } from "@app/models";
+import State from "@app/models";
 
-export type Blog = Pick<AppState, "router" | "blog">;
+export type Blog = Pick<State, "router" | "blog">;
 
 export const Blog: SFC<Blog> = ({ router, blog }) => (
   <div>
@@ -22,6 +22,6 @@ export const Blog: SFC<Blog> = ({ router, blog }) => (
   </div>
 );
 
-const mapStateToProps = ({ router, blog }: AppState) => ({ router, blog });
+const mapStateToProps = ({ router, blog }: State) => ({ router, blog });
 
 export default connect(mapStateToProps)(Blog);

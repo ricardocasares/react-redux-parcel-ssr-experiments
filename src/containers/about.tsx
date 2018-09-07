@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import Helmet from "react-helmet-async";
 
 import Link from "@app/components/Link";
-import { AppState } from "@app/models";
+import State from "@app/models";
 
-export type About = Pick<AppState, "router">;
+export type About = Pick<State, "router">;
 
 export const Index: SFC<About> = ({ router }) => (
   <div>
@@ -19,6 +19,6 @@ export const Index: SFC<About> = ({ router }) => (
   </div>
 );
 
-const mapStateToProps = ({ router }: AppState) => ({ router });
+const mapStateToProps = ({ router }: State) => ({ router });
 
 export default connect(mapStateToProps)(Index);

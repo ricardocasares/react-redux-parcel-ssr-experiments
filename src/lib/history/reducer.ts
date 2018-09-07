@@ -1,9 +1,9 @@
 import { Reducer } from "redux";
 import { parse } from "urlite/extra";
-import { HistoryState } from "@app/models";
+import { History } from "@app/models";
 import { HistoryAction, HistoryType } from "./types";
 
-export const reducer: Reducer<HistoryState, HistoryAction> = function(
+export const reducer: Reducer<History, HistoryAction> = function(
   state = { path: "/" },
   action
 ) {

@@ -4,9 +4,9 @@ import Helmet from "react-helmet-async";
 
 import Link from "@app/components/Link";
 import Counter from "@app/components/Counter";
-import { AppState } from "@app/models";
+import State from "@app/models";
 
-export type Index = Pick<AppState, "router">;
+export type Index = Pick<State, "router">;
 
 export const Index: SFC<Index> = ({ router }) => (
   <div>
@@ -21,4 +21,4 @@ export const Index: SFC<Index> = ({ router }) => (
   </div>
 );
 
-export default connect(({ router }: AppState) => ({ router }))(Index);
+export default connect(({ router }: State) => ({ router }))(Index);

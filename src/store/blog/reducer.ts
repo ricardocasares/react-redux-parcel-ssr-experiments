@@ -1,8 +1,8 @@
 import { Reducer } from "redux";
-import { BlogState } from "@app/models";
+import { Blog } from "@app/models";
 import { BlogAction, BlogType } from "./types";
 
-export const reducer: Reducer<BlogState, BlogAction> = (
+export const reducer: Reducer<Blog, BlogAction> = (
   state = { posts: [] },
   action
 ) => {

@@ -1,8 +1,8 @@
 import { Reducer } from "redux";
-import { CounterState } from "@app/models";
+import { Counter } from "@app/models";
 import { CounterAction, CounterType } from "./types";
 
-export const reducer: Reducer<CounterState, CounterAction> = function(
+export const reducer: Reducer<Counter, CounterAction> = function(
   state = { count: 0 },
   action
 ) {

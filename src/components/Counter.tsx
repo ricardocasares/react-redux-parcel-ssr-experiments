@@ -1,7 +1,7 @@
 import React, { SFC } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { AppState } from "@app/models";
+import State from "@app/models";
 import * as actions from "@app/store/counter/actions";
 
 type Counter = {
@@ -25,7 +25,7 @@ const Counter: SFC<Counter> = ({ increment, decrement }) => (
   </div>
 );
 
-const ConnectedCount = connect(({ counter }: AppState) => ({
+const ConnectedCount = connect(({ counter }: State) => ({
   count: counter.count
 }))(Count);
 

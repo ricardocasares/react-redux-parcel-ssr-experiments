@@ -6,9 +6,9 @@ import { Switch, Router, Route } from "libreact/lib/route";
 import Index from "@app/containers/index";
 import Blog from "@app/containers/blog";
 import About from "@app/containers/about";
-import { AppState } from "@app/models";
+import State from "@app/models";
 
-type RoutedApp = Pick<AppState, "router">;
+type RoutedApp = Pick<State, "router">;
 
 const RoutedApp: SFC<RoutedApp> = ({ router }) => (
   <Router route={router.path}>
@@ -26,7 +26,7 @@ const RoutedApp: SFC<RoutedApp> = ({ router }) => (
   </Router>
 );
 
-const mapStateToProps = ({ router }: AppState) => ({ router });
+const mapStateToProps = ({ router }: State) => ({ router });
 const ConnectedApp = connect(mapStateToProps)(RoutedApp);
 
 export default ConnectedApp;
