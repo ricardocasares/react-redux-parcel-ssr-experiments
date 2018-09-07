@@ -1,3 +1,3 @@
 export * from "./types";
 export * from "./actions";
-export { middleware as default } from "./middleware";
+export { factory as default } from "./middleware";
