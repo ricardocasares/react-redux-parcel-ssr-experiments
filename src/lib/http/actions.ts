@@ -1,4 +1,4 @@
-import { HttpAction, HttpActionType } from "./types";
+import { HttpAction, HttpType } from "./types";
 
 export function http<A, P>(
   url: string,
@@ -6,7 +6,8 @@ export function http<A, P>(
   options: any = {}
 ): HttpAction<A, P> {
   return {
-    type: HttpActionType.HTTP,
+    type: HttpType.HTTP,
+    payload: undefined,
     meta: {
       effect: {
         url,

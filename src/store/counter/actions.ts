@@ -1,13 +1,13 @@
 import { debounce } from "@app/lib/debounce";
-import { CounterAction, CounterActionType } from "./types";
+import { CounterAction, CounterType } from "./types";
 
 const inc = (payload: number = 1): CounterAction => ({
-  type: CounterActionType.INCREMENT,
+  type: CounterType.INCREMENT,
   payload
 });
 
 const dec = (payload: number = 1): CounterAction => ({
-  type: CounterActionType.DECREMENT,
+  type: CounterType.DECREMENT,
   payload
 });
 

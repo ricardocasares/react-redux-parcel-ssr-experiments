@@ -1,20 +1,10 @@
-import { Action } from "redux";
+import { Action } from "@app/models";
 
-export enum HistoryActionType {
+export enum HistoryType {
   POP = "@app/history/pop",
   PUSH = "@app/history/push"
 }
 
-export interface HistoryAction extends Action<HistoryActionType> {
-  payload: string;
-}
-
-export interface HistoryState {
-  path: string;
-  href?: string;
-  post?: string;
-  pathname?: string;
-  hostname?: string;
-  protocol?: string;
-  search?: Record<string, string>;
-}
+export type HistoryPopAction = Action<HistoryType.POP, string>;
+export type HistoryPushAction = Action<HistoryType.PUSH, string>;
+export type HistoryAction = HistoryPopAction | HistoryPushAction;

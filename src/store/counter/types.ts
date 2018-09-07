@@ -1,14 +1,10 @@
-import { Action } from "redux";
+import { Action } from "@app/models";
 
-export interface CounterState {
-  count: number;
-}
-
-export interface CounterAction extends Action<CounterActionType> {
-  payload: number;
-}
-
-export enum CounterActionType {
+export enum CounterType {
   INCREMENT = "@app/counter/increment",
   DECREMENT = "@app/counter/decrement"
 }
+
+export type CounterIncrementAction = Action<CounterType.INCREMENT, number>;
+export type CounterDecrementAction = Action<CounterType.DECREMENT, number>;
+export type CounterAction = CounterIncrementAction | CounterDecrementAction;
