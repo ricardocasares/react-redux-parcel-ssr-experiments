@@ -1,3 +1,8 @@
-# react-redux-parcel-ssr-experiments
+# ssr-experiments
 
-Trying to get Parcel to play nice with TypeScript, React, Redux & SSR.
+- [x] ssr
+- [x] redux
+- [x] redux middleware experiments
+- [x] typescript
+- [ ] code-spliting
+- [ ] ssr code-spliting
