@@ -10,6 +10,8 @@
     "rootDir": "src",
     "strict": true,
     "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {

@@ -1,8 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 
-// state
-import State from "@app/models";
-
 // reducers
 import blog from "./blog";
 import counter from "./counter";

@@ -3,7 +3,6 @@ import express from "express";
 import compression from "compression";
 import { Provider } from "react-redux";
 import { push } from "@app/lib/history";
-import { production } from "@app/lib/util";
 import { renderToString } from "react-dom/server";
 import { HelmetProvider } from "react-helmet-async";
 import { static as assets, Request, Response } from "express";
