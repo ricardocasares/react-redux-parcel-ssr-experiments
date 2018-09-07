@@ -5,7 +5,7 @@ import configureHttp from "@app/lib/http";
 import configureDebounce from "@app/lib/debounce";
 import configureErrorHandler from "@app/lib/errors";
 
-import configResolver from "@app/lib/data";
+import configResolver from "@app/lib/resolver";
 import { fetchPosts } from "@app/store/blog";
 import { HistoryType } from "@app/lib/history";
 
