@@ -11,5 +11,5 @@ const dec = (payload: number = 1): CounterAction => ({
   payload
 });
 
-export const increment = () => debounce(() => inc(), 250);
-export const decrement = () => debounce(() => dec(), 250);
+export const increment = () => debounce(inc, 250);
+export const decrement = () => debounce(dec, 250);
